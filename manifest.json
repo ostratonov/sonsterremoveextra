@@ -13,5 +13,15 @@
   ],
   "action": {
     "default_popup": "settings.html"
-  }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.songsterr.com/*"
+      ],
+      "js": [
+        "content-scripts/modal.js"
+      ]
+    }
+  ]
 }
