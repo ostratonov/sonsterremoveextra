@@ -8,6 +8,13 @@ const settingsIdMap = {
   'remove-modal': 'removePremiumModal',
 }
 
+const onWindowLoad = async () => {
+  await chrome.storage.sync.get(null, ({removePremiumModal, slowDownPlayer}) => {
+    removePremiumModal && (removePremiumModalEl.checked = true)
+    slowDownPlayer && (slowDownPlayerEl.checked = true)
+  })
+}
+
 const handleSettingValueChange = async (options) => {
   const targetId = options.target.id
   const settingId = settingsIdMap[targetId]
@@ -16,12 +23,6 @@ const handleSettingValueChange = async (options) => {
 }
 
 
-window.addEventListener('load', async () => {
-  await chrome.storage.sync.get(null, ({removePremiumModal, slowDownPlayer}) => {
-    removePremiumModal && (removePremiumModalEl.checked = true)
-    slowDownPlayer && (slowDownPlayerEl.checked = true)
-  })
-})
-
+window.addEventListener('load', onWindowLoad)
 removePremiumModalEl.addEventListener('change', handleSettingValueChange)
 slowDownPlayerEl.addEventListener('change', handleSettingValueChange)
