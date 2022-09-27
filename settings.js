@@ -25,7 +25,3 @@ window.addEventListener('load', async () => {
 
 removePremiumModalEl.addEventListener('change', handleSettingValueChange)
 slowDownPlayerEl.addEventListener('change', handleSettingValueChange)
-
-
-
-
