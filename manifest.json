@@ -1,27 +1,24 @@
 {
   "name": "songsterremoveextra",
   "description": "Extension, that allows you to somewhat modify songsterr.",
-  "version": "1.0",
+  "version": "1.0.1",
   "manifest_version": 3,
   "homepage_url": "https://github.com/ostratonov/sonsterremoveextra/blob/main/README.md",
+  "permissions": [
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": ["https://*.songsterr.com/*"],
   "background": {
     "service_worker": "background.js"
   },
-  "permissions": [
-    "storage",
-    "activeTab"
+  "content_scripts": [
+    {
+      "matches": ["https://*.songsterr.com/*"],
+      "js": ["modal.js"]
+    }
   ],
   "action": {
     "default_popup": "settings.html"
-  },
-  "content_scripts": [
-    {
-      "matches": [
-        "https://*.songsterr.com/*"
-      ],
-      "js": [
-        "content-scripts/modal.js"
-      ]
-    }
-  ]
+  }
 }
